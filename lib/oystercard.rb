@@ -6,6 +6,7 @@ class Oystercard
 
   def initialize
     @balance = 0
+    @travelling = false
   end
 
   def top_up(money)
@@ -15,6 +16,18 @@ class Oystercard
 
   def deduct(money)
     @balance -= money
+  end
+
+  def touch_in
+    @travelling = true
+  end
+
+  def touch_out
+    @travelling = false
+  end
+
+  def in_journey?
+    @travelling
   end
 
   private
