@@ -25,4 +25,10 @@ describe Oystercard do
     expect { subject.top_up(-5) }.to raise_error 'Cannot top_up a negative value'
   end
 
+  it 'can deduct from the balance' do
+    subject.top_up(10)
+    subject.deduct(5)
+    expect(subject.balance).to eq 5
+  end
+
 end
