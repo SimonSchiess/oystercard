@@ -6,4 +6,17 @@ describe Oystercard do
     expect(subject.balance).to eq 0
   end
 
+  it 'can be topped up' do
+    subject.top_up(5)
+    expect(subject.balance).to eq 5
+  end
+
+  it 'responds to top_up' do
+    expect(subject).to respond_to :top_up
+  end
+
+  it 'cannot be topped up a negative value' do
+    expect { subject.top_up(-5) }.to raise_error 'Cannot top_up a negative value'
+  end
+
 end
