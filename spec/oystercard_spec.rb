@@ -15,6 +15,12 @@ describe Oystercard do
     expect(subject).to respond_to :top_up
   end
 
+  it 'balance cannot rise over £90' do
+    maximum_balance = Oystercard::MAXIMUM_BALANCE
+    subject.top_up(maximum_balance)
+    expect { subject.top_up(50) }.to raise_error "Maximum balance is #{maximum_balance}"
+  end
+
   it 'cannot be topped up a negative value' do
     expect { subject.top_up(-5) }.to raise_error 'Cannot top_up a negative value'
   end
