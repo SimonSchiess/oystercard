@@ -32,6 +32,7 @@ describe Oystercard do
   end
 
   it 'can touch in' do
+    subject.top_up(1)
     subject.touch_in
     expect(subject.in_journey?).to eq true
   end
@@ -39,6 +40,10 @@ describe Oystercard do
   it 'can touch out' do
     subject.touch_out
     expect(subject.in_journey?).to eq false
+  end
+
+  it 'needs at least £1 to touch in' do
+    expect { subject.touch_in }.to raise_error 'Not enough funds available'
   end
 
 end

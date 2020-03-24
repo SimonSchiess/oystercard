@@ -19,6 +19,7 @@ class Oystercard
   end
 
   def touch_in
+    raise "Not enough funds available" if balance < 1
     @travelling = true
   end
 
@@ -33,7 +34,7 @@ class Oystercard
   private
 
   def check_money(money)
-    fail "Maximum balance is #{MAXIMUM_BALANCE}" if @balance + money > MAXIMUM_BALANCE
+    fail "Maximum balance is #{MAXIMUM_BALANCE}" if balance + money > MAXIMUM_BALANCE
     fail 'Cannot top_up a negative value' if money < 0
   end
 
